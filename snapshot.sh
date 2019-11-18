@@ -57,5 +57,5 @@ rsync -aPh \
     --exclude "/home/*/.local/share/Trash/*" \
     --exclude "/home/*/.thumbnails/*" \
     --exclude "/home/*/.steam/*" \
-    --exclude "/home/*/GOG Games/*" \
+    --exclude "/home/*/GOG\ Games/*" \
     /* "$dest""$date"
