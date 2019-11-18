@@ -47,6 +47,8 @@ rsync -aPh \
     --exclude "/media/*" \
     --exclude "/var/log/*" \
     --exclude "/var/cache/pacman/pkg/*" \
+    --exclude "/var/cache/apt/archives/*" \
+    --exclude "/var/cache/yum/*" \
     --exclude "/var/tmp/pamac-build-pc/*" \
     --exclude "/var/lib/aurbuild/*" \
     --exclude "/var/lib/docker/*" \
