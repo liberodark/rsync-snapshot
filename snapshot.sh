@@ -23,7 +23,7 @@ date=$(date +%Y.%m.%d_%H-%M-%S)
 dest="/root/backup/"
 snapshots="1"
 lock="/tmp/rsync-snapshot.lock"
-remove() { ls "$dest" | head -n -$snapshots | xargs rm -r; }
+remove() { find "$dest" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | head -n -$snapshots | xargs rm -r; }
 
 # Create Folder
 mkdir -p "$dest""$date"
