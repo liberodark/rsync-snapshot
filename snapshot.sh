@@ -21,7 +21,7 @@ if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 
 date=$(date +%Y.%m.%d_%H-%M-%S)
 dest="/root/backup/"
-snapshots="1"
+snapshots="3"
 lock="/tmp/rsync-snapshot.lock"
 remove() { find "$dest" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | head -n -$snapshots | xargs rm -r; }
 
