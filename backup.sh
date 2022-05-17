@@ -45,6 +45,7 @@ rsync -aPh \
     --exclude "/run/*" \
     --exclude "/mnt/*" \
     --exclude "/media/*" \
+    --exclude "/vmlinuz" \
     --exclude "/var/log/?*.log" \
     --exclude "/var/log/*/*.log" \
     --exclude "/var/log/lastlog" \
