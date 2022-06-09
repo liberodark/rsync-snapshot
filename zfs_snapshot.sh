@@ -2,7 +2,7 @@
 #
 # About: Rsync Snapshots
 # Author: liberodark
-# Thanks : erdnaxeli
+# Thanks : 
 # License: GNU GPLv3
 
 version="0.1.0"
@@ -21,7 +21,7 @@ if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 
 date=$(date +%Y.%m.%d_%H-%M-%S)
 dest="local-share"
-snapshots="24"
+snapshots="3"
 lock="/tmp/zfs-snapshot.lock"
 remove=$(zfs list -t snapshot | head -n -"${snapshots}" | grep "${dest}" | awk '{print $1}')
 
