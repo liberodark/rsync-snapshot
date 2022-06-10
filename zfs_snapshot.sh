@@ -23,18 +23,18 @@ date=$(date +%Y.%m.%d_%H-%M-%S)
 dest="local-share"
 snapshots="3"
 lock="/tmp/zfs-snapshot.lock"
-remove=$(zfs list -t snapshot | head -n -"${snapshots}" | grep "${dest}" | awk '{print $1}')
+remove=$(/sbin/zfs list -t snapshot | head -n -"${snapshots}" | grep "${dest}" | awk '{print $1}')
 
 # Remove Old Snapshot
 if [ -z "${remove}" ]; then
     echo "No Old Snapshot"
     else
     echo "Remove Old Snapshot"
-    zfs destroy "${remove}"
+    /sbin/zfs destroy "${remove}"
 fi
 
 exec 9>"${lock}"
 flock -n 9 || exit
 
 # Backup
-zfs snapshot "${dest}"@"${date}"
+/sbin/zfs snapshot "${dest}"@"${date}"
