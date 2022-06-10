@@ -26,7 +26,12 @@ lock="/tmp/zfs-snapshot.lock"
 remove=$(zfs list -t snapshot | head -n -"${snapshots}" | grep "${dest}" | awk '{print $1}')
 
 # Remove Old Snapshot
-zfs destroy "${remove}"
+if [ -z "${remove}" ]; then
+    echo "No Old Snapshot"
+    else
+    echo "Remove Old Snapshot"
+    zfs destroy "${remove}"
+fi
 
 exec 9>"${lock}"
 flock -n 9 || exit
