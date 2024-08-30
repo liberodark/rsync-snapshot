@@ -5,7 +5,7 @@
 # Thanks : 
 # License: GNU GPLv3
 
-version="0.1.0"
+version="0.1.1"
 
 echo "Welcome on Rsync Snapshots Script $version"
 
@@ -25,12 +25,14 @@ snapshots="3"
 lock="/tmp/zfs-snapshot.lock"
 remove=$(/sbin/zfs list -t snapshot | head -n -"${snapshots}" | grep "${dest}" | awk '{print $1}')
 
-# Remove Old Snapshot
+# Remove Old Snapshots
 if [ -z "${remove}" ]; then
-    echo "No Old Snapshot"
-    else
-    echo "Remove Old Snapshot"
-    /sbin/zfs destroy "${remove}"
+    echo "No Old Snapshots to remove"
+else
+    echo "Removing Old Snapshots"
+    while IFS= read -r snapshot; do
+        /sbin/zfs destroy "${snapshot}"
+    done <<< "${remove}"
 fi
 
 exec 9>"${lock}"
